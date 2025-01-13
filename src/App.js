@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_URL; 
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState("");
 
   const fetchTasks = async () => {
     axios
-    .get("https://localhost:7015/api/todo", {
+    .get(`${apiUrl}/api/todo`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,7 +25,7 @@ function App() {
 
   const addTask = async () => {
     if (taskName.trim()) {
-      axios.post("https://localhost:7015/api/todo", { Name: taskName, IsComplete: false }, {
+      axios.post(`${apiUrl}/api/todo`, { Name: taskName, IsComplete: false }, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -40,7 +42,7 @@ function App() {
   };
 
   const deleteTask = async (id) => {
-    await axios.delete(`https://localhost:7015/api/todo/${id}`);
+    await axios.delete(`${apiUrl}/api/todo/${id}`);
     fetchTasks();
   };
 
