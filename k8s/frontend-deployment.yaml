@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2  # Number of replicas (adjust based on your need)
+  replicas: 2 
   selector:
     matchLabels:
       app: frontend
@@ -16,12 +16,13 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend:latest  # Replace with your Docker image name
+        image: frontend:latest 
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         env:
         - name: REACT_APP_API_URL
-          value: "http://backend-service:5000"  # Adjust to point to your backend service
+          value: "http://localhost:30002" 
         resources:
           limits:
             memory: "256Mi"

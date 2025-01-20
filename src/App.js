@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 const apiUrl = process.env.REACT_APP_API_URL; 
+
+console.log("Process Env:", process.env);
+console.log("API URL:", apiUrl);
 
 function App() {
   const [tasks, setTasks] = useState([]);
